@@ -9,6 +9,8 @@ import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.text.DateFormat;
+import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import tweetanalyzer.Main;
@@ -19,6 +21,8 @@ import tweetanalyzer.Main;
  */
 public class Info extends javax.swing.JFrame {
 
+    private ResourceBundle rb = Main.rb;
+    
     public Info() {
         initComponents();
     }
@@ -31,7 +35,6 @@ public class Info extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jButton13 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jButton12 = new javax.swing.JButton();
@@ -63,25 +66,8 @@ public class Info extends javax.swing.JFrame {
         jLabel5.setText("Version " + Main.VERSION);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI Semilight", 0, 20)); // NOI18N
-        jLabel6.setText("#Twitter-Datenanalyse");
-
-        jButton13.setBackground(new java.awt.Color(219, 219, 219));
-        jButton13.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
-        jButton13.setText("hensel@uni-hildesheim.de");
-        jButton13.setBorder(null);
-        jButton13.setContentAreaFilled(false);
-        jButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton13.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jButton13.setMaximumSize(new java.awt.Dimension(200, 23));
-        jButton13.setMinimumSize(new java.awt.Dimension(200, 23));
-        jButton13.setOpaque(true);
-        jButton13.setPreferredSize(new java.awt.Dimension(200, 28));
-        jButton13.setRequestFocusEnabled(false);
-        jButton13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton13ActionPerformed(evt);
-            }
-        });
+        jLabel6.setText(rb.getString("title")
+        );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -92,12 +78,11 @@ public class Info extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 139, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
                         .addComponent(jLabel4))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -108,10 +93,8 @@ public class Info extends javax.swing.JFrame {
                     .addComponent(jLabel4)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jButton13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel5)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, java.awt.BorderLayout.PAGE_START);
@@ -124,7 +107,6 @@ public class Info extends javax.swing.JFrame {
         jButton12.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jButton12.setForeground(new java.awt.Color(255, 255, 255));
         jButton12.setText("canvasjs (Diagramme)");
-        jButton12.setBorder(null);
         jButton12.setContentAreaFilled(false);
         jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -143,7 +125,6 @@ public class Info extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("echarts (Wordcloud)");
-        jButton1.setBorder(null);
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -162,7 +143,6 @@ public class Info extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jButton11.setForeground(new java.awt.Color(255, 255, 255));
         jButton11.setText("googleMaps (Heatmap)");
-        jButton11.setBorder(null);
         jButton11.setContentAreaFilled(false);
         jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -219,7 +199,6 @@ public class Info extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("stanford-coreNLP");
-        jButton5.setBorder(null);
         jButton5.setContentAreaFilled(false);
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -238,7 +217,6 @@ public class Info extends javax.swing.JFrame {
         jButton9.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("apache-httpcore");
-        jButton9.setBorder(null);
         jButton9.setContentAreaFilled(false);
         jButton9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -257,7 +235,6 @@ public class Info extends javax.swing.JFrame {
         jButton8.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("apache-httpclient");
-        jButton8.setBorder(null);
         jButton8.setContentAreaFilled(false);
         jButton8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -276,7 +253,6 @@ public class Info extends javax.swing.JFrame {
         jButton7.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("jaxb (XML)");
-        jButton7.setBorder(null);
         jButton7.setContentAreaFilled(false);
         jButton7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -295,7 +271,6 @@ public class Info extends javax.swing.JFrame {
         jButton10.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jButton10.setForeground(new java.awt.Color(255, 255, 255));
         jButton10.setText("json-simple");
-        jButton10.setBorder(null);
         jButton10.setContentAreaFilled(false);
         jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -314,7 +289,6 @@ public class Info extends javax.swing.JFrame {
         jButton6.setFont(new java.awt.Font("Segoe UI Light", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("twitter4j-core");
-        jButton6.setBorder(null);
         jButton6.setContentAreaFilled(false);
         jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -415,10 +389,6 @@ public class Info extends javax.swing.JFrame {
         open("https://canvasjs.com");
     }//GEN-LAST:event_jButton12ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        open("mailto:hensel@uni-hildesheim.de?Subject=Twitter_Begriffsanalyse");
-    }//GEN-LAST:event_jButton13ActionPerformed
-
     private static void open(String url) {
         if (Desktop.isDesktopSupported()) {
             try {
@@ -441,7 +411,6 @@ public class Info extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;

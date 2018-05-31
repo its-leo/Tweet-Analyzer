@@ -7,7 +7,7 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="#Twitter-Datenanalyse"/>
+    <Property name="title" type="java.lang.String" value="Tweet-Analyse"/>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="cc" green="cc" red="cc" type="rgb"/>
     </Property>
@@ -179,9 +179,8 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/icons/icons8-Info Squared-32(2).png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="Anwendungsinformationen einsehen"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;infoButtonTTT&quot;)" type="code"/>
                 </Property>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="horizontalAlignment" type="int" value="2"/>
@@ -200,9 +199,6 @@
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Sprache umstellen"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
-                </Property>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
               </Properties>
@@ -240,9 +236,8 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/icons/icons8-Line Chart-28.png"/>
                 </Property>
-                <Property name="toolTipText" type="java.lang.String" value="H&#xe4;ufigkeiten der Tweets einsehen"/>
-                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;statisticsButtonTTT&quot;)" type="code"/>
                 </Property>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -284,8 +279,12 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/icons/icons8-Split Cells-32(1).png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Unterteilen"/>
-                <Property name="toolTipText" type="java.lang.String" value="Entfernt alle herausgefilterten Tweets aus der lokalen Datenbank"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;subdivide&quot;)" type="code"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;subdivideButtonTTT&quot;)" type="code"/>
+                </Property>
                 <Property name="alignmentX" type="float" value="0.5"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -320,8 +319,12 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/icons/icons8-Download-32.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Aktualisieren"/>
-                <Property name="toolTipText" type="java.lang.String" value="Neue Tweets einholen und Datenbank erg&#xe4;nzen"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;update&quot;)" type="code"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;updateButtonTTT&quot;)" type="code"/>
+                </Property>
                 <Property name="alignmentX" type="float" value="0.5"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -356,8 +359,12 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/icons/icons8-Reset-32.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Zur&#xfc;cksetzen"/>
-                <Property name="toolTipText" type="java.lang.String" value="Anwendung mitsamt Datenbank zur&#xfc;cksetzen"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;reset&quot;)" type="code"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;resetButtonTTT&quot;)" type="code"/>
+                </Property>
                 <Property name="alignmentX" type="float" value="0.5"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -393,8 +400,12 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/icons/icons8-Export-32.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Importieren"/>
-                <Property name="toolTipText" type="java.lang.String" value="Datenbank einer XML-Datei importieren"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;import&quot;)" type="code"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;importButtonTTT&quot;)" type="code"/>
+                </Property>
                 <Property name="alignmentX" type="float" value="0.5"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -426,8 +437,12 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/resources/icons/icons8-Import-32.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Exportieren"/>
-                <Property name="toolTipText" type="java.lang.String" value="Datenbank in XML-Datei exportieren"/>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;export&quot;)" type="code"/>
+                </Property>
+                <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                  <Connection code="rb.getString(&quot;exportButtonTTT&quot;)" type="code"/>
+                </Property>
                 <Property name="alignmentX" type="float" value="0.5"/>
                 <Property name="contentAreaFilled" type="boolean" value="false"/>
                 <Property name="focusable" type="boolean" value="false"/>
@@ -489,10 +504,11 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="2"/>
-                    <Property name="text" type="java.lang.String" value="Filtern"/>
-                    <Property name="toolTipText" type="java.lang.String" value="&lt;html&gt;&#xa;FILTER1 , FILTER2 = Vereinigungsmenge&#xa;&lt;br&gt;&#xa;&lt;font color=blue&gt;&#xa;FILTER1 &amp; FILTER2 = Schnittmenge&#xa;&lt;/font&gt;&#xa;&lt;br&gt;&#xa;&#xa;&lt;font color=purple&gt;&#xa;-FILTER = Filter negieren&#xa;&lt;/font&gt;&#xa;&lt;br&gt;&#xa;&lt;font color=red&gt;&#xa;!FiLTeR = Gro&#xdf;-/Kleinschreibung beachten&#xa;&lt;/font&gt;&#xa;&#xa;&lt;br&gt;&#xa;&lt;font color=orange&gt;&#xa;&gt;FILTER&lt; = Ort, Schlagwort, Organisation filtern&#xa;&lt;/font&gt;&#xa;&#xa;&lt;/html&gt;&#xa;&#xa;&#xa;&#xa;&lt;/font&gt;"/>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="rb.getString(&quot;filter&quot;)" type="code"/>
+                    </Property>
+                    <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="rb.getString(&quot;filterFieldTTT&quot;)" type="code"/>
                     </Property>
                     <Property name="caretColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -663,9 +679,6 @@
                           <Font name="Segoe UI Light" size="24" style="0"/>
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
-                        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                          <Border info="null"/>
-                        </Property>
                         <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                           <Dimension value="[6, 10]"/>
                         </Property>
@@ -713,7 +726,9 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/resources/icons/icons8-Search-32.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Suchen"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="rb.getString(&quot;search&quot;)" type="code"/>
+                        </Property>
                       </Properties>
                       <Events>
                         <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="searchLabelMouseEntered"/>
@@ -751,7 +766,7 @@
                   <SerializedValue value="-84,-19,0,5,115,114,0,12,106,97,118,97,46,105,111,46,70,105,108,101,4,45,-92,69,14,13,-28,-1,3,0,1,76,0,4,112,97,116,104,116,0,18,76,106,97,118,97,47,108,97,110,103,47,83,116,114,105,110,103,59,120,112,116,0,23,67,58,92,85,115,101,114,115,92,72,69,78,83,69,76,92,68,101,115,107,116,111,112,119,2,0,92,120"/>
                 </Property>
                 <Property name="fileFilter" type="javax.swing.filechooser.FileFilter" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new FileNameExtensionFilter(&quot;XML Datei&quot;, &quot;xml&quot;)" type="code"/>
+                  <Connection code="new FileNameExtensionFilter(rb.getString(&quot;xmlFile&quot;), &quot;xml&quot;)" type="code"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -779,9 +794,6 @@
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="c4" green="c4" red="c4" type="rgb"/>
                     </Property>
-                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                      <Border info="null"/>
-                    </Property>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="resultScrollPane.setVisible(false);"/>
@@ -801,7 +813,7 @@
                           <Font name="Segoe UI Light" size="18" style="0"/>
                         </Property>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        &quot;Datum&quot;, &quot;Benutzer&quot;, &quot;Tweet&quot;&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    @Override&#xa;    public boolean isCellEditable(int row, int column) {&#xa;        return false;&#xa;    }&#xa;&#xa;}" type="code"/>
+                          <Connection code="new javax.swing.table.DefaultTableModel(&#xa;    new Object [][] {&#xa;&#xa;    },&#xa;    new String [] {&#xa;        rb.getString(&quot;date&quot;), rb.getString(&quot;user&quot;), rb.getString(&quot;tweet&quot;)&#xa;    }&#xa;) {&#xa;    Class[] types = new Class [] {&#xa;        java.lang.String.class, java.lang.String.class, java.lang.String.class&#xa;    };&#xa;&#xa;    public Class getColumnClass(int columnIndex) {&#xa;        return types [columnIndex];&#xa;    }&#xa;&#xa;    @Override&#xa;    public boolean isCellEditable(int row, int column) {&#xa;        return false;&#xa;    }&#xa;&#xa;}" type="code"/>
                         </Property>
                         <Property name="autoResizeMode" type="int" value="3"/>
                         <Property name="gridColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -986,7 +998,9 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/resources/icons/icons8-Analyze-32(1).png"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Auswerten"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="rb.getString(&quot;analyze&quot;)" type="code"/>
+                            </Property>
                             <Property name="contentAreaFilled" type="boolean" value="false"/>
                             <Property name="enabled" type="boolean" value="false"/>
                             <Property name="focusable" type="boolean" value="false"/>
@@ -1019,7 +1033,9 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/resources/icons/icons8-Play-32.png"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Fortsetzen"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="rb.getString(&quot;resume&quot;)" type="code"/>
+                            </Property>
                             <Property name="contentAreaFilled" type="boolean" value="false"/>
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -1054,7 +1070,9 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/resources/icons/icons8-Pause-32.png"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Pausieren"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="rb.getString(&quot;pause&quot;)" type="code"/>
+                            </Property>
                             <Property name="contentAreaFilled" type="boolean" value="false"/>
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -1078,9 +1096,8 @@
                         <Component class="javax.swing.JCheckBox" name="focusCheckBox">
                           <Properties>
                             <Property name="selected" type="boolean" value="true"/>
-                            <Property name="toolTipText" type="java.lang.String" value="Auswertungsverlauf in Echtzeit verfolgen"/>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="null"/>
+                            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="rb.getString(&quot;focusCheckBoxTTT&quot;)" type="code"/>
                             </Property>
                             <Property name="horizontalAlignment" type="int" value="0"/>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -1252,7 +1269,9 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/resources/icons/icons8-Monitor-32.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Visualisieren"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="rb.getString(&quot;visualize&quot;)" type="code"/>
+                        </Property>
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                         <Property name="enabled" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
@@ -1281,7 +1300,9 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/resources/icons/icons8-Bar Chart-32.png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Diagramm"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="rb.getString(&quot;chart&quot;)" type="code"/>
+                        </Property>
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
@@ -1304,7 +1325,9 @@
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                           <Image iconType="3" name="/resources/icons/icons8-Cloud-32(1).png"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="TagCloud"/>
+                        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                          <Connection code="rb.getString(&quot;wordcloud&quot;)" type="code"/>
+                        </Property>
                         <Property name="contentAreaFilled" type="boolean" value="false"/>
                         <Property name="focusable" type="boolean" value="false"/>
                       </Properties>
@@ -1355,7 +1378,9 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/resources/icons/icons8-World Map-32.png"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="HeatMap"/>
+                            <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="rb.getString(&quot;heatmap&quot;)" type="code"/>
+                            </Property>
                             <Property name="contentAreaFilled" type="boolean" value="false"/>
                             <Property name="focusable" type="boolean" value="false"/>
                             <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
@@ -1385,9 +1410,8 @@
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/resources/icons/icons8-box-important-22.png"/>
                             </Property>
-                            <Property name="toolTipText" type="java.lang.String" value="Nicht alle Orte konnten geokodiert werden"/>
-                            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                              <Border info="null"/>
+                            <Property name="toolTipText" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="rb.getString(&quot;mapWarningButtonTTT&quot;)" type="code"/>
                             </Property>
                             <Property name="borderPainted" type="boolean" value="false"/>
                             <Property name="contentAreaFilled" type="boolean" value="false"/>

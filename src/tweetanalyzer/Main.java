@@ -5,19 +5,27 @@
  */
 package tweetanalyzer;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JFrame;
 import tweetanalyzer.gui.GUI;
 import tweetanalyzer.gui.Start;
+
 /**
- *
  * @author HENSEL
  */
 public class Main {
 
     public final static boolean DEBUG = true;
     public final static double VERSION = 2.02;
+
+    private static Locale locale;
+    public static DateFormat df;
+    public static ResourceBundle rb;
     
-    //NUR de oder en
+    //de or en
     /**
      * @param args the command line arguments
      */
@@ -45,10 +53,24 @@ public class Main {
         }
         //</editor-fold>
 
+        locale = Locale.getDefault();
+
+        String bundleSource = "resources/languages/English";
+
+        if (locale.getLanguage().equals("de")) {
+            bundleSource = "resources/languages/German";
+        }
+
+        //TODO
+        //df = DateFormat.getTimeInstance(DateFormat.DEFAULT, locale);        
+        df = new SimpleDateFormat("E. dd.MM.yy HH:mm:ss");
+
+        rb = ResourceBundle.getBundle(bundleSource, locale);
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 Runnable runner = new Runnable() {
                     public void run() {
                         JFrame start = new Start();

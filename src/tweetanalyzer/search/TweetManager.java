@@ -10,10 +10,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.ResourceBundle;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import tweetanalyzer.Main;
 import tweetanalyzer.gui.GUI;
-import tweetanalyzer.store.Database;
 import tweetanalyzer.store.Tweet;
 
 import twitter4j.Query;
@@ -33,9 +34,10 @@ import twitter4j.conf.ConfigurationBuilder;
 public class TweetManager {
 
     private static final DateFormat df = new SimpleDateFormat("E. dd.MM.yy HH:mm:ss");
+    private static ResourceBundle rb = Main.rb;
 
-    private static final String CONSUMER_KEY = "WrDYoj9jQ7pstpeevfaFTOGFz";
-    private static final String CONSUMER_SECRET = "nGywO56FQRRRsHS9lNIlpq41o57SMdZ8bOrjJR4TO3wCNUo6FO";
+    private static final String CONSUMER_KEY = "l5HHK9Zif6cbQLVTm2lzTQ";
+    private static final String CONSUMER_SECRET = "3Jp8X9B78MijlxgFXrp76S5mT2QkqK1iOytZ8z1sc";
 
     private static final int TWEETS_PER_QUERY = 100;
 
@@ -73,7 +75,7 @@ public class TweetManager {
 
         cb.setOAuth2TokenType(token.getTokenType());
         cb.setOAuth2AccessToken(token.getAccessToken());
-        
+
         return new TwitterFactory(cb.build()).getInstance();
 
     }
@@ -87,7 +89,6 @@ public class TweetManager {
         long maxID = -1;
 
         Twitter twitter = getTwitter();
- 
 
         try {
 
@@ -96,13 +97,13 @@ public class TweetManager {
 
             for (int queryNumber = 0; queryNumber < MAX_QUERIES; queryNumber++) {
 
-                gui.setStatusLabel(searchTweetsRateLimit.getRemaining() + " Anfragen übrig");
+                gui.setStatusLabel(searchTweetsRateLimit.getRemaining() + " " + rb.getString("requestsLeft"));
 
                 if (searchTweetsRateLimit.getRemaining() == 0) {
                     long seconds = searchTweetsRateLimit.getSecondsUntilReset() + 2;
 
                     for (int i = 0; i < seconds; i++) {
-                        gui.setCountLabel("Warte " + (seconds - i) + " Sekunden");
+                        gui.setCountLabel(String.format(rb.getString("waitingSeconds"), seconds - i));
                         Thread.sleep(1000l);
                     }
 
@@ -153,12 +154,12 @@ public class TweetManager {
                 }
                 resultTable.scrollRectToVisible(resultTable.getCellRect(tweets.size() - 1, 0, true));
 
-                gui.setCountLabel(tweets.size() + " Tweets erhalten");
+                gui.setCountLabel(tweets.size() + " " + rb.getString("tweetsReceived"));
                 searchTweetsRateLimit = r.getRateLimitStatus();
             }
 
         } catch (Exception e) {
-            gui.openMessageDialog("<html>Fehlschlag!<br><i>" + e.getMessage() + "</i></html>");
+            gui.openMessageDialog("<html>" + rb.getString("failure") + "!<br><i>" + e.getMessage() + "</i></html>");
         }
         return tweets;
     }

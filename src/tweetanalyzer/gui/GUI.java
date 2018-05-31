@@ -25,6 +25,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,6 +45,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import javax.xml.bind.JAXBException;
+import tweetanalyzer.Main;
 import static tweetanalyzer.Main.DEBUG;
 import tweetanalyzer.store.Location;
 import tweetanalyzer.analyze.NLP;
@@ -60,7 +63,6 @@ import tweetanalyzer.visualize.WordCloud.WordCloudBuilder;
  */
 public class GUI extends javax.swing.JFrame {
 
-    private static final DateFormat df = new SimpleDateFormat("E. dd.MM.yy HH:mm:ss");
     private static final DecimalFormat nf = new DecimalFormat();
 
     private boolean stageSearch = false;
@@ -73,13 +75,15 @@ public class GUI extends javax.swing.JFrame {
     private Thread mainThread;
     private Timer mainTimer;
 
+    private DateFormat df = Main.df;
+    private ResourceBundle rb = Main.rb;
     /**
      * Creates new form GUI
      */
     public GUI(String lang) {
-        this.lang = lang;
+        this.lang = lang;        
         db.setLang(lang);
-
+        
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
@@ -167,7 +171,7 @@ public class GUI extends javax.swing.JFrame {
         mapWarningButton = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("#Twitter-Datenanalyse");
+        setTitle("Tweet-Analyse");
         setBackground(new java.awt.Color(204, 204, 204));
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -213,8 +217,7 @@ public class GUI extends javax.swing.JFrame {
         infoButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         infoButton.setForeground(new java.awt.Color(0, 18, 50));
         infoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Info Squared-32(2).png"))); // NOI18N
-        infoButton.setToolTipText("Anwendungsinformationen einsehen");
-        infoButton.setBorder(null);
+        infoButton.setToolTipText(rb.getString("infoButtonTTT"));
         infoButton.setContentAreaFilled(false);
         infoButton.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         infoButton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -228,7 +231,6 @@ public class GUI extends javax.swing.JFrame {
         settingsButton.setFont(new java.awt.Font("Segoe UI Light", 0, 22)); // NOI18N
         settingsButton.setForeground(new java.awt.Color(255, 255, 255));
         settingsButton.setToolTipText("Sprache umstellen");
-        settingsButton.setBorder(null);
         settingsButton.setContentAreaFilled(false);
         settingsButton.setFocusable(false);
         settingsButton.setText(db.getLang().toUpperCase());
@@ -243,8 +245,7 @@ public class GUI extends javax.swing.JFrame {
         statisticButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         statisticButton.setForeground(new java.awt.Color(255, 255, 255));
         statisticButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Line Chart-28.png"))); // NOI18N
-        statisticButton.setToolTipText("Häufigkeiten der Tweets einsehen");
-        statisticButton.setBorder(null);
+        statisticButton.setToolTipText(rb.getString("statisticsButtonTTT"));
         statisticButton.setContentAreaFilled(false);
         statisticButton.setFocusable(false);
         statisticButton.setVisible(false);
@@ -264,8 +265,8 @@ public class GUI extends javax.swing.JFrame {
         subdivideButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         subdivideButton.setForeground(new java.awt.Color(255, 255, 255));
         subdivideButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Split Cells-32(1).png"))); // NOI18N
-        subdivideButton.setText("Unterteilen");
-        subdivideButton.setToolTipText("Entfernt alle herausgefilterten Tweets aus der lokalen Datenbank");
+        subdivideButton.setText(rb.getString("subdivide"));
+        subdivideButton.setToolTipText(rb.getString("subdivideButtonTTT"));
         subdivideButton.setAlignmentX(0.5F);
         subdivideButton.setContentAreaFilled(false);
         subdivideButton.setFocusable(false);
@@ -283,8 +284,8 @@ public class GUI extends javax.swing.JFrame {
         updateButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         updateButton.setForeground(new java.awt.Color(255, 255, 255));
         updateButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Download-32.png"))); // NOI18N
-        updateButton.setText("Aktualisieren");
-        updateButton.setToolTipText("Neue Tweets einholen und Datenbank ergänzen");
+        updateButton.setText(rb.getString("update"));
+        updateButton.setToolTipText(rb.getString("updateButtonTTT"));
         updateButton.setAlignmentX(0.5F);
         updateButton.setContentAreaFilled(false);
         updateButton.setFocusable(false);
@@ -302,8 +303,8 @@ public class GUI extends javax.swing.JFrame {
         resetButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         resetButton.setForeground(new java.awt.Color(255, 255, 255));
         resetButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Reset-32.png"))); // NOI18N
-        resetButton.setText("Zurücksetzen");
-        resetButton.setToolTipText("Anwendung mitsamt Datenbank zurücksetzen");
+        resetButton.setText(rb.getString("reset"));
+        resetButton.setToolTipText(rb.getString("resetButtonTTT"));
         resetButton.setAlignmentX(0.5F);
         resetButton.setContentAreaFilled(false);
         resetButton.setFocusable(false);
@@ -322,8 +323,8 @@ public class GUI extends javax.swing.JFrame {
         importButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         importButton.setForeground(new java.awt.Color(255, 255, 255));
         importButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Export-32.png"))); // NOI18N
-        importButton.setText("Importieren");
-        importButton.setToolTipText("Datenbank einer XML-Datei importieren");
+        importButton.setText(rb.getString("import"));
+        importButton.setToolTipText(rb.getString("importButtonTTT"));
         importButton.setAlignmentX(0.5F);
         importButton.setContentAreaFilled(false);
         importButton.setFocusable(false);
@@ -340,8 +341,8 @@ public class GUI extends javax.swing.JFrame {
         exportButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         exportButton.setForeground(new java.awt.Color(255, 255, 255));
         exportButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Import-32.png"))); // NOI18N
-        exportButton.setText("Exportieren");
-        exportButton.setToolTipText("Datenbank in XML-Datei exportieren");
+        exportButton.setText(rb.getString("export"));
+        exportButton.setToolTipText(rb.getString("exportButtonTTT"));
         exportButton.setAlignmentX(0.5F);
         exportButton.setContentAreaFilled(false);
         exportButton.setFocusable(false);
@@ -365,9 +366,8 @@ public class GUI extends javax.swing.JFrame {
         filterField.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         filterField.setForeground(new java.awt.Color(255, 255, 255));
         filterField.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        filterField.setText("Filtern");
-        filterField.setToolTipText("<html>\nFILTER1 , FILTER2 = Vereinigungsmenge\n<br>\n<font color=blue>\nFILTER1 & FILTER2 = Schnittmenge\n</font>\n<br>\n\n<font color=purple>\n-FILTER = Filter negieren\n</font>\n<br>\n<font color=red>\n!FiLTeR = Groß-/Kleinschreibung beachten\n</font>\n\n<br>\n<font color=orange>\n>FILTER< = Ort, Schlagwort, Organisation filtern\n</font>\n\n</html>\n\n\n\n</font>");
-        filterField.setBorder(null);
+        filterField.setText(rb.getString("filter"));
+        filterField.setToolTipText(rb.getString("filterFieldTTT"));
         filterField.setCaretColor(new java.awt.Color(255, 255, 255));
         filterField.setDisabledTextColor(new java.awt.Color(204, 204, 204));
         filterField.setOpaque(false);
@@ -464,7 +464,6 @@ public class GUI extends javax.swing.JFrame {
 
         keywordField.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         keywordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        keywordField.setBorder(null);
         keywordField.setMinimumSize(new java.awt.Dimension(6, 10));
         keywordField.setOpaque(false);
         keywordField.setPreferredSize(new java.awt.Dimension(59, 10));
@@ -494,7 +493,7 @@ public class GUI extends javax.swing.JFrame {
         searchLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         searchLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         searchLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Search-32.png"))); // NOI18N
-        searchLabel.setText("Suchen");
+        searchLabel.setText(rb.getString("search"));
         searchLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 searchLabelMouseEntered(evt);
@@ -513,14 +512,13 @@ public class GUI extends javax.swing.JFrame {
 
         jFileChooser.setAcceptAllFileFilterUsed(false);
         jFileChooser.setCurrentDirectory(new java.io.File("C:\\Users\\HENSEL\\Desktop"));
-        jFileChooser.setFileFilter(new FileNameExtensionFilter("XML Datei", "xml"));
+        jFileChooser.setFileFilter(new FileNameExtensionFilter(rb.getString("xmlFile"), "xml"));
         contentPanel.add(jFileChooser, java.awt.BorderLayout.CENTER);
 
         middlePanel.setBackground(new java.awt.Color(204, 204, 204));
         middlePanel.setLayout(new java.awt.BorderLayout());
 
         resultScrollPane.setBackground(new java.awt.Color(196, 196, 196));
-        resultScrollPane.setBorder(null);
 
         resultTable.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         resultTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -528,7 +526,7 @@ public class GUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Datum", "Benutzer", "Tweet"
+                rb.getString("date"), rb.getString("user"), rb.getString("tweet")
             }
         ) {
             Class[] types = new Class [] {
@@ -631,7 +629,7 @@ public class GUI extends javax.swing.JFrame {
         analyzeButton.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         analyzeButton.setForeground(new java.awt.Color(255, 255, 255));
         analyzeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Analyze-32(1).png"))); // NOI18N
-        analyzeButton.setText("Auswerten");
+        analyzeButton.setText(rb.getString("analyze"));
         analyzeButton.setContentAreaFilled(false);
         analyzeButton.setEnabled(false);
         analyzeButton.setFocusable(false);
@@ -650,7 +648,7 @@ public class GUI extends javax.swing.JFrame {
         resumeButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         resumeButton.setForeground(new java.awt.Color(255, 255, 255));
         resumeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Play-32.png"))); // NOI18N
-        resumeButton.setText("Fortsetzen");
+        resumeButton.setText(rb.getString("resume"));
         resumeButton.setContentAreaFilled(false);
         resumeButton.setFocusable(false);
         resumeButton.setMaximumSize(new java.awt.Dimension(183, 60));
@@ -669,7 +667,7 @@ public class GUI extends javax.swing.JFrame {
         suspendButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         suspendButton.setForeground(new java.awt.Color(255, 255, 255));
         suspendButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Pause-32.png"))); // NOI18N
-        suspendButton.setText("Pausieren");
+        suspendButton.setText(rb.getString("pause"));
         suspendButton.setContentAreaFilled(false);
         suspendButton.setFocusable(false);
         suspendButton.setMaximumSize(new java.awt.Dimension(183, 60));
@@ -685,8 +683,7 @@ public class GUI extends javax.swing.JFrame {
         jPanel2.add(suspendButton);
 
         focusCheckBox.setSelected(true);
-        focusCheckBox.setToolTipText("Auswertungsverlauf in Echtzeit verfolgen");
-        focusCheckBox.setBorder(null);
+        focusCheckBox.setToolTipText(rb.getString("focusCheckBoxTTT"));
         focusCheckBox.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         focusCheckBox.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-UnTarget-32.png"))); // NOI18N
         focusCheckBox.setMargin(new java.awt.Insets(4, 4, 4, 4));
@@ -747,7 +744,7 @@ public class GUI extends javax.swing.JFrame {
         visualizeButton.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         visualizeButton.setForeground(new java.awt.Color(255, 255, 255));
         visualizeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Monitor-32.png"))); // NOI18N
-        visualizeButton.setText("Visualisieren");
+        visualizeButton.setText(rb.getString("visualize"));
         visualizeButton.setContentAreaFilled(false);
         visualizeButton.setEnabled(false);
         visualizeButton.setFocusable(false);
@@ -764,7 +761,7 @@ public class GUI extends javax.swing.JFrame {
         chartButton.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         chartButton.setForeground(new java.awt.Color(255, 255, 255));
         chartButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Bar Chart-32.png"))); // NOI18N
-        chartButton.setText("Diagramm");
+        chartButton.setText(rb.getString("chart"));
         chartButton.setContentAreaFilled(false);
         chartButton.setFocusable(false);
         chartButton.setVisible(false);
@@ -778,7 +775,7 @@ public class GUI extends javax.swing.JFrame {
         wordCloudButton.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         wordCloudButton.setForeground(new java.awt.Color(255, 255, 255));
         wordCloudButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-Cloud-32(1).png"))); // NOI18N
-        wordCloudButton.setText("TagCloud");
+        wordCloudButton.setText(rb.getString("wordcloud"));
         wordCloudButton.setContentAreaFilled(false);
         wordCloudButton.setFocusable(false);
         wordCloudButton.setVisible(false);
@@ -802,7 +799,7 @@ public class GUI extends javax.swing.JFrame {
         mapButton.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         mapButton.setForeground(new java.awt.Color(255, 255, 255));
         mapButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-World Map-32.png"))); // NOI18N
-        mapButton.setText("HeatMap");
+        mapButton.setText(rb.getString("heatmap"));
         mapButton.setContentAreaFilled(false);
         mapButton.setFocusable(false);
         mapButton.setMargin(new java.awt.Insets(2, 0, 2, 0));
@@ -817,8 +814,7 @@ public class GUI extends javax.swing.JFrame {
         mapPanel.add(mapButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
 
         mapWarningButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/icons/icons8-box-important-22.png"))); // NOI18N
-        mapWarningButton.setToolTipText("Nicht alle Orte konnten geokodiert werden");
-        mapWarningButton.setBorder(null);
+        mapWarningButton.setToolTipText(rb.getString("mapWarningButtonTTT"));
         mapWarningButton.setBorderPainted(false);
         mapWarningButton.setContentAreaFilled(false);
         mapWarningButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -851,7 +847,7 @@ public class GUI extends javax.swing.JFrame {
     private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
         Runnable runner = new Runnable() {
             public void run() {
-                statusLabel.setText("Tweets suchen");
+                statusLabel.setText(rb.getString("searchTweets"));
                 search(keywordField.getText(), 0);
             }
         };
@@ -873,7 +869,7 @@ public class GUI extends javax.swing.JFrame {
     private void analyzeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_analyzeButtonActionPerformed
         Runnable runner = new Runnable() {
             public void run() {
-                statusLabel.setText("Tweets analysieren");
+                statusLabel.setText(rb.getString("analyzeTweets"));
                 analyze();
             }
         };
@@ -914,7 +910,7 @@ public class GUI extends javax.swing.JFrame {
         visualizeButton.setVisible(true);
         visualizeButton.setEnabled(false);
         keywordField.setText("");
-        setTitle("#Twitter-Datenanalyse");
+        setTitle(rb.getString("title"));
         countLabel.setText("");
         analyzeButton.setEnabled(false);
         analyzeButton.setVisible(true);
@@ -993,7 +989,7 @@ public class GUI extends javax.swing.JFrame {
                     keywordField.setVisible(false);
                     searchFieldUnderline.setVisible(false);
                     searchButton.setVisible(false);
-                    statusLabel.setText("Datei einlesen");
+                    statusLabel.setText(rb.getString("readData"));
                     Database newDb = new FileHandler().unmarshall(file);
 
                     DefaultTableModel tableModel = (DefaultTableModel) resultTable.getModel();
@@ -1026,23 +1022,23 @@ public class GUI extends javax.swing.JFrame {
                     if (sameLanguage) {
                         if (sameKeyword && sameAnalyzeStatus) {
 
-                            int dialogResult1 = JOptionPane.showConfirmDialog(null, "Soll die bestehende Datenbank ergänzt werden?", "Importieren", JOptionPane.YES_NO_OPTION);
+                            int dialogResult1 = JOptionPane.showConfirmDialog(null, rb.getString("q0"), rb.getString("import"), JOptionPane.YES_NO_OPTION);
                             if (dialogResult1 == JOptionPane.YES_OPTION) {
                                 db.getTweets().addAll(newDb.getTweets());
 
-                                int dialogResult2 = JOptionPane.showConfirmDialog(null, "<html>Soll die Datenbank singularisiert werden?<br>(eventuell zeitaufwändig)</html>", "Importieren", JOptionPane.YES_NO_OPTION);
+                                int dialogResult2 = JOptionPane.showConfirmDialog(null, "<html>" + rb.getString("q1") + "</html>", rb.getString("import"), JOptionPane.YES_NO_OPTION);
                                 if (dialogResult2 == JOptionPane.YES_OPTION) {
-                                    statusLabel.setText("Liste singularisieren");
+                                    statusLabel.setText(rb.getString("singularizeList"));
                                     db.makeTweetsDistinct();
                                 }
                             } else {
                                 db = newDb;
                             }
 
-                            statusLabel.setText("Liste sortieren");
+                            statusLabel.setText(rb.getString("sortList"));
                             db.sortTweets();
 
-                            statusLabel.setText("Liste füllen");
+                            statusLabel.setText(rb.getString("fillList"));
                             updateTableModel();
 
                             exportButton.setVisible(true);
@@ -1071,8 +1067,8 @@ public class GUI extends javax.swing.JFrame {
                             if (db.getAnalyzedCount() == 0) {
                                 importDatabase(newDb);
                             } else {
-                                int dialogResult1 = JOptionPane.showConfirmDialog(null, "Suchbegriff oder Analysestatus der Datenbanken unterschiedlich.\n"
-                                        + "Soll die bestehende Datenbank überschrieben werden?", "Importieren", JOptionPane.YES_NO_OPTION);
+                                int dialogResult1 = JOptionPane.showConfirmDialog(null, rb.getString("q2") + "\n"
+                                        + rb.getString("q2.1"), rb.getString("import"), JOptionPane.YES_NO_OPTION);
                                 if (dialogResult1 == JOptionPane.YES_OPTION) {
                                     importDatabase(newDb);
                                 } else {
@@ -1088,7 +1084,7 @@ public class GUI extends javax.swing.JFrame {
                         }
 
                         keywordField.setText(db.getTitle(false));
-                        setTitle("#Twitter-Datenanalyse - " + db.getKeyword());
+                        setTitle(rb.getString("title") + " - " + db.getKeyword());
                         keywordField.setEditable(false);
                         searchProgressBar.setVisible(false);
                         searchLabel.setVisible(false);
@@ -1099,7 +1095,9 @@ public class GUI extends javax.swing.JFrame {
                     } else {
                         statusLabel.setText("");
                         searchProgressBar.setVisible(false);
-                        JOptionPane.showMessageDialog(mainPanel, "Diskrepanz der Sprachen " + language(newDb.getLang()) + " (importierte DB) und " + language(db.getLang()) + " (bestehende DB). Datenbank kann nicht importiert werden.");
+                        String msg = String.format(rb.getString("q3"),
+                                newDb.getLang(), db.getLang());
+                        JOptionPane.showMessageDialog(mainPanel, msg);
                     }
                 }
             };
@@ -1114,7 +1112,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void importDatabase(Database newDb) {
         db = newDb;
-        statusLabel.setText("Liste füllen");
+        statusLabel.setText(rb.getString("fillList"));
         updateTableModel();
 
         NLP.reset();
@@ -1139,7 +1137,7 @@ public class GUI extends javax.swing.JFrame {
 
         Object[] possibilities = {0.01, 0.05, 0.1, 0.2, 0.4, 0.6, 0.9};
         Double i = (Double) JOptionPane.showInputDialog(mainPanel,
-                "<html>Wie stark sollen die Gewichtungen der Orte geglättet werden?<br>(<i>0.01 = maximal, 0.9 = minimal</i>)</html>", "HeatMap",
+                "<html>" + rb.getString("q4") + "<br>(<i>" + rb.getString("q4.1") + "</i>)</html>", rb.getString("heatmap"),
                 JOptionPane.PLAIN_MESSAGE, null, possibilities, "Numbers");
         if (i != null) {
 
@@ -1167,10 +1165,10 @@ public class GUI extends javax.swing.JFrame {
                                 .getName()).log(Level.SEVERE, null, ex);
                     }
                 } else {
-                    JOptionPane.showMessageDialog(mainPanel, "Keine Positionsangaben vorhanden.");
+                    JOptionPane.showMessageDialog(mainPanel, rb.getString("w0"));
                 }
             } else {
-                JOptionPane.showMessageDialog(mainPanel, "Desktop wurde nicht gefunden.");
+                JOptionPane.showMessageDialog(mainPanel, rb.getString("wDesktopNotFound"));
             }
         }
     }//GEN-LAST:event_mapButtonActionPerformed
@@ -1188,7 +1186,7 @@ public class GUI extends javax.swing.JFrame {
     private void wordCloudButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wordCloudButtonActionPerformed
         Object[] possibilities = {5, 10, 15, 20, 25, 30, 40, 50, 60, 80, 100};
         Integer i = (Integer) JOptionPane.showInputDialog(mainPanel,
-                "Wieviele Einträge sollen angezeigt werden?", "WordCloud",
+                rb.getString("q5"), rb.getString("wordcloud"),
                 JOptionPane.PLAIN_MESSAGE, null, possibilities, "Numbers");
         if ((i != null) && (i > 0)) {
             if (Desktop.isDesktopSupported()) {
@@ -1221,7 +1219,7 @@ public class GUI extends javax.swing.JFrame {
                             .getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                System.out.println("Desktop not found!");
+                JOptionPane.showMessageDialog(mainPanel, rb.getString("wDesktopNotFound"));
             }
         }
     }//GEN-LAST:event_wordCloudButtonActionPerformed
@@ -1239,7 +1237,7 @@ public class GUI extends javax.swing.JFrame {
             } catch (IOException e) {
                 /* TODO: error handling */ }
         } else {
-            System.out.println("Desktop not found!");
+            JOptionPane.showMessageDialog(mainPanel, rb.getString("wDesktopNotFound"));
         }
     }//GEN-LAST:event_linkButtonActionPerformed
 
@@ -1247,14 +1245,11 @@ public class GUI extends javax.swing.JFrame {
 
         Object[] possibilities = {5, 10, 15, 20, 25, 30, 40, 50, 60, 80, 100, 200};
         Integer i = (Integer) JOptionPane.showInputDialog(mainPanel,
-                "Wieviele Einträge sollen angezeigt werden?", "Diagramm",
+                rb.getString("q5"), rb.getString("chart"),
                 JOptionPane.QUESTION_MESSAGE, null, possibilities, "Numbers");
 
         if ((i != null) && (i > 0)) {
-            Integer j = (Integer) JOptionPane.showConfirmDialog(mainPanel, "<html>Soll die <font color=orange>"
-                    + "Anzahl Tweets zu identifizierten Schlagworten</font> neben der<br>"
-                    + "<font color=green>Anzahl identifizierter Schlagwortnennungen</font> "
-                    + "angezeigt werden?<br>(eventuell zeitaufwändig)</html>", "Diagramm", JOptionPane.YES_NO_OPTION);
+            Integer j = (Integer) JOptionPane.showConfirmDialog(mainPanel, rb.getString("q6"), rb.getString("Diagramm"), JOptionPane.YES_NO_OPTION);
 
             if (Desktop.isDesktopSupported()) {
                 File hm = null;
@@ -1292,7 +1287,7 @@ public class GUI extends javax.swing.JFrame {
                             .getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-                System.out.println("Desktop not found!");
+                JOptionPane.showMessageDialog(mainPanel, rb.getString("wDesktopNotFound"));
             }
         }
     }//GEN-LAST:event_chartButtonActionPerformed
@@ -1303,9 +1298,7 @@ public class GUI extends javax.swing.JFrame {
         int dayTimeHorizon = 7;
 
         if (!mostRecentTweet.getDate().after(new Date(System.currentTimeMillis() - (dayTimeHorizon * DAY_IN_MS)))) {
-            JOptionPane.showMessageDialog(mainPanel, "<html>Tweets älter als " + dayTimeHorizon
-                    + " Tage werden von Twitter teilweise archiviert und sind nicht weiter verfügbar.<br>Kurz: "
-                    + "<font color=red>Die Datenbank kann nach der Aktualisierung unvollständig sein!</font></html>");
+            JOptionPane.showMessageDialog(mainPanel, String.format(rb.getString("w1"), dayTimeHorizon));
         }
         Runnable runner = new Runnable() {
             public void run() {
@@ -1315,13 +1308,9 @@ public class GUI extends javax.swing.JFrame {
 
                 String keyword = db.getKeyword();
 
-                statusLabel.setText("Neue Tweets suchen");
+                statusLabel.setText(rb.getString("newTweetsFound"));
                 search(keyword, mostRecentTweet.getId());
 
-//                statusLabel.setText("Liste singularisieren");
-//                db.makeTweetsDistinct();
-//                statusLabel.setText("Liste füllen");
-//                updateTableModel();
             }
         };
         mainThread = new Thread(runner, "Updating");
@@ -1335,7 +1324,10 @@ public class GUI extends javax.swing.JFrame {
                 linkButton.setVisible(true);
                 Tweet h = db.getTweets().get(resultTable.convertRowIndexToModel(resultTable.getSelectedRow()));
                 if (resultTable.getSelectedColumn() == 0) {
+
+                    //TODO
                     filterField.setText(new SimpleDateFormat("E. dd.MM.yy").format(h.getDate()).toString());
+
                     filter(0);
                     linkButton.setVisible(false);
                 } else if (resultTable.getSelectedColumn() == 1) {
@@ -1373,7 +1365,7 @@ public class GUI extends javax.swing.JFrame {
     private void subdivideButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subdivideButtonActionPerformed
 
         DefaultTableModel tableModel = (DefaultTableModel) resultTable.getModel();
-        int result = JOptionPane.showConfirmDialog(mainPanel, "Hiermit werden alle herausgefilterten Tweets aus der lokalen Datenbank entfernt.", "Unterteilen", JOptionPane.WARNING_MESSAGE);
+        int result = JOptionPane.showConfirmDialog(mainPanel, rb.getString("w2"), rb.getString("subdivide"), JOptionPane.WARNING_MESSAGE);
         if (result == JOptionPane.OK_OPTION) {
             Runnable runner = new Runnable() {
                 public void run() {
@@ -1391,18 +1383,20 @@ public class GUI extends javax.swing.JFrame {
 
                     keywordField.setEditable(false);
                     keywordField.setText(db.getTitle(false));
-                    filterField.setText("Filtern");
+                    filterField.setText(rb.getString("filter"));
                     filterLine.setVisible(false);
                     filterField.setFocusable(false);
                     filterField.setFocusable(true);
 
                     tableModel.setRowCount(0);
 
-                    statusLabel.setText("Liste füllen");
+                    statusLabel.setText(rb.getString("fillList"));
                     updateTableModel();
-                    updateSentimentLabel(db.getSentiment());
-                    analyzedCount.setText(nf.format(db.getTweets().size()) + " Tweets | " + nf.format(db.getTagsDistinct().size()) + " Schlagworte");
+                    if (db.getAnalyzedCount() > 0) {
+                        updateSentimentLabel(db.getSentiment());
+                        analyzedCount.setText(String.format(rb.getString("currentTweetsTags"), nf.format(db.getTweets().size()), nf.format(db.getTagsDistinct().size())));
 
+                    }
                     subdivideButton.setVisible(false);
                 }
             };
@@ -1413,7 +1407,7 @@ public class GUI extends javax.swing.JFrame {
 
 
     private void filterFieldMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterFieldMouseEntered
-        if (filterField.getText().equals("Filtern")) {
+        if (filterField.getText().equals(rb.getString("filter"))) {
             filterField.setText("");
             filterLine.setVisible(true);
         }
@@ -1421,7 +1415,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void filterFieldMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterFieldMouseExited
         if (filterField.getText().equals("")) {
-            filterField.setText("Filtern");
+            filterField.setText(rb.getString("filter"));
             filterLine.setVisible(false);
             filterField.setFocusable(false);
             filterField.setFocusable(true);
@@ -1431,7 +1425,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_filterFieldMouseExited
 
     private void filterFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterFieldKeyPressed
-        if (filterField.getText().equals("Filtern")) {
+        if (filterField.getText().equals(rb.getString("filter"))) {
             filterField.setText("");
             filterLine.setVisible(true);
         }
@@ -1439,7 +1433,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void filterFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_filterFieldFocusLost
         if (filterField.getText().equals("")) {
-            filterField.setText("Filtern");
+            filterField.setText(rb.getString("filter"));
             filterLine.setVisible(false);
             filterField.setFocusable(false);
             filterField.setFocusable(true);
@@ -1452,7 +1446,7 @@ public class GUI extends javax.swing.JFrame {
         TableRowSorter<TableModel> tr = new TableRowSorter<TableModel>(resultTable.getModel());
         resultTable.setRowSorter(tr);
         tr.setRowFilter(RowFilter.regexFilter(""));
-        filterField.setText("Filtern");
+        filterField.setText(rb.getString("filter"));
         filterLine.setVisible(false);
         filterField.setFocusable(false);
         filterField.setFocusable(true);
@@ -1543,7 +1537,8 @@ public class GUI extends javax.swing.JFrame {
                     mapWarningButton.setVisible(true);
                     this.cancel();
                 }
-                mapWarningButton.setToolTipText(nf.format(db.getCompletedLocationsCount()) + " von " + nf.format(db.getLocations().size()) + " Orten geokodiert");
+                mapWarningButton.setToolTipText(String.format(rb.getString("currentGeocoded"), nf.format(db.getCompletedLocationsCount()), nf.format(db.getLocations().size())));
+
             }
         };
         t.scheduleAtFixedRate(tt, 3000, 3000);
@@ -1563,7 +1558,7 @@ public class GUI extends javax.swing.JFrame {
 
     //--------------------------------------------------------------------------
     private void search(String term, long sinceId) {
-        if (!term.equals("") && !term.equals("Suchen") && !stageSearch) {
+        if (!term.equals("") && !term.equals(rb.getString("search")) && !stageSearch) {
 
             String keyword;
 
@@ -1584,7 +1579,7 @@ public class GUI extends javax.swing.JFrame {
             db.setKeyword(keyword);
             db.setLang(lang);
 
-            setTitle("#Twitter-Datenanalyse - " + db.getKeyword());
+            setTitle(rb.getString("title") + " - " + db.getKeyword());
             importButton.setVisible(false);
             exportButton.setVisible(false);
             updateButton.setVisible(false);
@@ -1710,7 +1705,7 @@ public class GUI extends javax.swing.JFrame {
             statusLabel.setText("");
 
         } else if (resultTable.getRowCount() < db.getTweets().size()) {
-            statusLabel.setText(nf.format(resultTable.getRowCount()) + " Tweets gefiltert");
+            statusLabel.setText(String.format(rb.getString("tweetsFiltered"), nf.format(resultTable.getRowCount())));
             visible = true;
         }
         subdivideButton.setVisible(visible);
@@ -1727,6 +1722,10 @@ public class GUI extends javax.swing.JFrame {
 
     public JTable getResultTable() {
         return resultTable;
+    }
+    
+    public ResourceBundle getResourceBundle() {
+        return rb;
     }
 
     public void setStatusLabel(String text) {
@@ -1780,7 +1779,7 @@ public class GUI extends javax.swing.JFrame {
             updateCount();
         } else {
             resetButtonActionPerformed(null);
-            statusLabel.setText("Keine Tweets vorhanden");
+            statusLabel.setText(rb.getString("noTweetsAvailable"));
         }
     }
 
@@ -1794,6 +1793,8 @@ public class GUI extends javax.swing.JFrame {
 
             List<Tweet> tweets = db.getTweets();
 
+            final String tweetsAnalyzed = rb.getString("tweetsAnalyzed");
+
             for (int k = db.getAnalyzedCount(); k < db.getTweets().size(); k++) {
                 tweets.get(k).analyze();
                 db.setAnalyzedCount(k);
@@ -1803,7 +1804,7 @@ public class GUI extends javax.swing.JFrame {
                     resultTable.scrollRectToVisible(resultTable.getCellRect(k, 0, true));
                 }
                 analyzeProgressBar.setValue(k);
-                statusLabel.setText(k + " Tweets analysiert");
+                statusLabel.setText(k + tweetsAnalyzed);
             }
             db.setAnalyzedCount(db.getAnalyzedCount() + 1);
 
@@ -1814,7 +1815,7 @@ public class GUI extends javax.swing.JFrame {
                 db.completeLocations();
             }
 
-            analyzedCount.setText("Wir haben " + nf.format(db.getTweets().size()) + " Tweets mit " + nf.format(db.getSentenceCount()) + " Sätzen und insgesamt " + nf.format(db.getWordCount()) + " Wörtern ausgewertet.");
+            analyzedCount.setText(String.format(rb.getString("currentTweetsTagsSentencesWords0"), nf.format(db.getTweets().size()), nf.format(db.getSentenceCount()), nf.format(db.getWordCount())));
 
             //--------------------------
             disableAnalyzeStatus();
@@ -1848,18 +1849,18 @@ public class GUI extends javax.swing.JFrame {
         analyzePanel.setVisible(false);
 
         String locationCount = nf.format(db.getLocations().size());
-        String info = nf.format(db.getTweets().size()) + " Tweets | ";
+        String info = nf.format(db.getTweets().size()) + rb.getString("tweets") + " | ";
         if (db.getWordCount() > 0 && db.getSentenceCount() > 0) {
-            info += nf.format(db.getSentenceCount()) + " Sätze | " + nf.format(db.getWordCount()) + " Worte | ";
+            info += nf.format(db.getSentenceCount()) + rb.getString("sentences") + " | " + nf.format(db.getWordCount()) + rb.getString("words") + " | ";
         }
-        info += nf.format(db.getTagsDistinct().size()) + " Schlagworte";
+        info += nf.format(db.getTagsDistinct().size()) + " " + rb.getString("tags");
         if (db.getWordCount() > 0 && db.getSentenceCount() > 0) {
-            info += " | " + locationCount + " Orte | " + nf.format(db.getAbsoluteLocationsCount()) + " Ortsnennungen";
+            info += " | " + locationCount + rb.getString("locations") + " Orte | " + nf.format(db.getAbsoluteLocationsCount()) + " " + rb.getString("locationsCount");
         }
 
         analyzedCount.setText(info);
-        mapWarningButton.setToolTipText(nf.format(db.getCompletedLocationsCount()) + " von " + locationCount + " Orten geokodiert");
-
+        mapWarningButton.setToolTipText(String.format(rb.getString("currentGeocoded"), nf.format(db.getCompletedLocationsCount()), nf.format(locationCount)));
+                
         updateSentimentLabel(db.getSentiment());
         visualizeButton.setEnabled(true);
         resetButton.setVisible(true);
@@ -1876,14 +1877,14 @@ public class GUI extends javax.swing.JFrame {
 
         } else {
             resetButtonActionPerformed(null);
-            statusLabel.setText("Keine Tweets vorhanden");
+            statusLabel.setText(rb.getString("noTweetsAvailable"));
         }
     }
 
     //--------------------------------------------------------------------------
     private void updateSentimentLabel(double sentiment) {
 
-        String out = "Stimmung: ";
+        String out = rb.getString("sentiment") + ": ";
 
         if (lang.equals("de")) {
             sentiment *= 1.5;
@@ -1915,19 +1916,10 @@ public class GUI extends javax.swing.JFrame {
         sentimentSmiley.setText(out);
     }
 
-    public String language(String lang) {
-        if (lang.equals("de")) {
-            return "Deutsch";
-        }
-        if (lang.equals("en")) {
-            return "Englisch";
-        }
-        return "";
-    }
 
     public void updateCount() {
 
-        countLabel.setText("DB: " + nf.format(db.getTweets().size()) + " Tweets");
+        countLabel.setText("DB: " + nf.format(db.getTweets().size()) + " " + rb.getString("tweets"));
     }
 
 

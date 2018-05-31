@@ -5,14 +5,17 @@
  */
 package tweetanalyzer.gui;
 
+import java.util.ResourceBundle;
+import tweetanalyzer.Main;
 import tweetanalyzer.analyze.NLP;
 
 /**
- *
  * @author HENSEL
  */
 public class Start extends javax.swing.JFrame {
 
+    private ResourceBundle rb = Main.rb;
+    
     /**
      * Creates new form Start
      */
@@ -51,7 +54,8 @@ public class Start extends javax.swing.JFrame {
 
         loadLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         loadLabel.setForeground(new java.awt.Color(255, 255, 255));
-        loadLabel.setText("Lade Bibliotheken...");
+        loadLabel.setText(rb.getString("loadLibraries") + "..."
+        );
         jPanel1.add(loadLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         jProgressBar.setIndeterminate(true);
@@ -62,7 +66,8 @@ public class Start extends javax.swing.JFrame {
         enButton.setBackground(new java.awt.Color(13, 37, 86));
         enButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         enButton.setForeground(new java.awt.Color(255, 255, 255));
-        enButton.setText("Englisch");
+        enButton.setText(rb.getString("english")
+        );
         enButton.setContentAreaFilled(false);
         enButton.setMargin(new java.awt.Insets(2, 10, 2, 10));
         enButton.setOpaque(true);
@@ -76,7 +81,8 @@ public class Start extends javax.swing.JFrame {
         deButton.setBackground(new java.awt.Color(13, 37, 86));
         deButton.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         deButton.setForeground(new java.awt.Color(255, 255, 255));
-        deButton.setText("Deutsch");
+        deButton.setText(rb.getString("german"));
+        deButton.setActionCommand(rb.getString("german"));
         deButton.setContentAreaFilled(false);
         deButton.setMargin(new java.awt.Insets(2, 10, 2, 10));
         deButton.setOpaque(true);
@@ -89,14 +95,15 @@ public class Start extends javax.swing.JFrame {
 
         chooseLabel.setFont(new java.awt.Font("Segoe UI Light", 0, 18)); // NOI18N
         chooseLabel.setForeground(new java.awt.Color(255, 255, 255));
-        chooseLabel.setText("Sprache der Bibliotheken:");
+        chooseLabel.setText(rb.getString("libraryLanguage") + ":");
         jPanel1.add(chooseLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, -1));
 
         titleLabel1.setBackground(new java.awt.Color(204, 204, 204));
         titleLabel1.setFont(new java.awt.Font("Segoe UI Light", 0, 24)); // NOI18N
         titleLabel1.setForeground(new java.awt.Color(204, 204, 204));
         titleLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        titleLabel1.setText("#Twitter-Datenanalyse");
+        titleLabel1.setText(rb.getString("title")
+        );
         jPanel1.add(titleLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 350, 50));
 
         getContentPane().add(jPanel1);
