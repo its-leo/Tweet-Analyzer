@@ -5,5 +5,5 @@ Tweet-Analyzer is a Java-based application that allows you to collect and analyz
 ![alt text](https://raw.githubusercontent.com/its-leo/Tweet-Analyzer/master/src/resources/description/1start.PNG)
 ![alt text](https://raw.githubusercontent.com/its-leo/Tweet-Analyzer/master/src/resources/description/2gesucht-importiert.PNG)
 ![alt text](https://raw.githubusercontent.com/its-leo/Tweet-Analyzer/master/src/resources/description/3gefiltert.PNG)
-![alt text](https://raw.githubusercontent.com/its-leo/Tweet-Analyzer/master/src/resources/description/4analyse.PNG)
+![alt text](https://raw.githubusercontent.com/its-leo/Tweet-Analyzer/master/src/resources/description/4analyse2.PNG)
 ![alt text](https://raw.githubusercontent.com/its-leo/Tweet-Analyzer/master/src/resources/description/5analysiert3.PNG)
