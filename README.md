@@ -1,5 +1,5 @@
 # Tweet-Analyzer
-Tweet-Analyzer is a Java-based application that allows you to collect and analyze english and german Tweets, utilizing Twitter4J and Standford NLP. Analysis findings can furthermore be displayed in the form of heatmaps, tagclouds and basic charts.
+Tweet-Analyzer is a Java-based application that allows you to collect and analyze english and german Tweets, utilizing Twitter4J and Stanford NLP. Analysis findings can furthermore be displayed in the form of heatmaps, tagclouds and basic charts.
 
 
 ![alt text](https://raw.githubusercontent.com/its-leo/Tweet-Analyzer/master/src/resources/description/1start.PNG)
